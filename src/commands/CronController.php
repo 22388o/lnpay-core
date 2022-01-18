@@ -9,6 +9,7 @@ namespace lnpay\commands;
 
 use lnpay\node\models\LnNode;
 use lnpay\models\StatusType;
+use lnpay\node\models\NodeListener;
 use yii\console\Controller;
 
 use Yii;
@@ -18,7 +19,14 @@ class CronController extends Controller
 {
     public function actionMinute()
     {
-
+        foreach (LnNode::find()->where(['status_type_id'=>StatusType::LN_NODE_ACTIVE]) as $lnNode) {
+            foreach ($lnNode->nodeListeners as $nL) {
+                if (!$nL->isRunning && $nL->isAutorestart) { //if node listener is not running, but should be
+                    $nL->startListenerAndTurnOnAutostart();
+                    echo $nL->id." Listener not running, attempting to start\n";
+                }
+            }
+        }
     }
 
     public function actionHourly()

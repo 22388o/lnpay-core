@@ -231,6 +231,24 @@ class NodeListener extends \yii\db\ActiveRecord
         return SupervisorComponent::getProcessInfo($this->id);
     }
 
+    public function getIsRunning()
+    {
+        $info = $this->getSupervisorProcessInfo();
+        if (@$info['statename']=='RUNNING')
+            return true;
+        else
+            return false;
+    }
+
+    public function getIsAutorestart()
+    {
+        $info = json_decode($this->supervisor_parameters);
+        if (@$info['autorestart']==true)
+            return true;
+        else
+            return false;
+    }
+
     /**
      * @throws \Exception
      */
