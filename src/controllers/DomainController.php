@@ -47,8 +47,8 @@ class DomainController extends DashController
     }
 
     /**
-     * Creates a new IntegrationWebhook model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * Creates a new CustyDomain model.
+     * If creation is successful, the browser will be redirected to the 'index' page.
      * @return mixed
      */
     public function actionCreate()
@@ -58,7 +58,7 @@ class DomainController extends DashController
 
         if ($model->load(\LNPay::$app->request->post())) {
             if ($model->validate() && $model->save()) {
-                \LNPay::$app->session->setFlash('success','Webhook created!');
+                \LNPay::$app->session->setFlash('success','Domain created!');
                 return $this->redirect(['index']);
             }
 
@@ -70,7 +70,7 @@ class DomainController extends DashController
     }
 
     /**
-     * Deletes an existing IntegrationWebhook model.
+     * Deletes an existing CustyDomain model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -87,12 +87,12 @@ class DomainController extends DashController
      * Finds the IntegrationWebhook model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return IntegrationWebhook the loaded model
+     * @return CustyDomain the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = IntegrationWebhook::find()->where(['external_hash'=>$id])->andWhere(['user_id'=>\LNPay::$app->user->id])->one()) !== null) {
+        if (($model = CustyDomain::find()->where(['external_hash'=>$id])->andWhere(['user_id'=>\LNPay::$app->user->id])->one()) !== null) {
             return $model;
         }
 

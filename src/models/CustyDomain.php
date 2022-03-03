@@ -107,6 +107,15 @@ class CustyDomain extends \yii\db\ActiveRecord
         return CustyDomain::find()->where(['status_type_id'=>StatusType::CUSTYDOMAIN_ACTIVE]);
     }
 
+    /**
+     * @param $external_hash
+     * @return CustyDomain
+     */
+    public static function findByHash($external_hash)
+    {
+        return static::find()->where(['external_hash'=>$external_hash])->one();
+    }
+
     public static function isDefaultDomain($id)
     {
         if (in_array($id,self::defaultDomains()))

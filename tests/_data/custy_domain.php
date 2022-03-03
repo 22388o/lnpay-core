@@ -14,7 +14,8 @@ return
             'ssl_info'=>'',
             'use_hsts'=>'',
             'upgrade_insecure'=>'',
-            'data'=>''
+            'data'=>'',
+            'external_hash'=>'cdom_12345678'
         ],
         [
             'id'=>6,
@@ -27,6 +28,7 @@ return
             'ssl_info'=>'',
             'use_hsts'=>'',
             'upgrade_insecure'=>'',
-            'data'=>''
+            'data'=>'',
+            'external_hash'=>'cdom_567876564'
         ]
     ];
